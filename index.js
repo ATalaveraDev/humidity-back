@@ -3,11 +3,13 @@ const amqp = require('amqplib/callback_api');
 
 console.log('== Humidity Module Initiation ==');
 
-
 function initWebsocketAndRabbit() {
+
     amqp.connect('amqp://localhost', function(error0, connection) {
+        console.log('== RabbitMQ Initiation ==');
         if (error0) {
-            throw error0;
+            console.error(error0);
+            return setTimeout(initWebsocketAndRabbit, 1000);
         }
 
         const wss = new WebSocket.Server({ port: 8080 });
@@ -32,7 +34,7 @@ function initWebsocketAndRabbit() {
                     console.log(" [x] Sent %s", msg);
                 });
             });
-        });
+        }, err => console.log(err));
     });
 }
 
