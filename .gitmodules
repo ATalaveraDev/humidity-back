@@ -1,0 +1,3 @@
+[submodule "humidity-frontend"]
+	path = humidity-frontend
+	url = git@github.com:ATalaveraDev/humidity-frontend.git
